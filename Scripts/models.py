@@ -9,7 +9,7 @@ from sklearn.metrics import (
     accuracy_score,
     precision_score,
     recall_score,
-    f1_score
+    f1_score,
 )
 import numpy as np
 import seaborn as sns
@@ -41,17 +41,17 @@ def base_model_performance(
     cv = RepeatedStratifiedKFold(n_splits=5, n_repeats=3, random_state=1)
 
     cross_val_score_mean = cross_val_score(
-        classifier, X_val, y_val, cv=cv, scoring='accuracy'
+        classifier, X_val, y_val, cv=cv, scoring="accuracy"
     ).mean()
 
     auc_roc = roc_auc_score(y_val, y_val_pred_proba)
 
     accuracy = accuracy_score(y_val, y_val_pred)
-    
+
     precision = precision_score(y_val, y_val_pred)
-    
+
     recall = recall_score(y_val, y_val_pred)
-    
+
     f1 = f1_score(y_val, y_val_pred)
 
     print("Cross Validation Mean Score: ", "{0:.2%}".format(cross_val_score_mean))
